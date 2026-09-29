@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pos-backend-configmap
+data:
+  NODE_ENV: "production"
+  PORT: "8080"

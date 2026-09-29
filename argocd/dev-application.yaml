@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: health-and-wellness-dev
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: 'https://gitlab.cbe.com.et/devsecops3/deploymentfiles/health-and-wellness.git'
+    targetRevision: dev
+    path: k8s-manifests/overlays/dev
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: health-and-wellness-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

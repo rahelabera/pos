@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - backend/backend-deployment.yaml
+  - backend/backend-service.yaml
+  - backend/backend-route.yaml
+  - backend/backend-configmap.yaml
+  - frontend/frontend-deployment.yaml
+  - frontend/frontend-service.yaml
+  - frontend/frontend-route.yaml
+  - frontend/frontend-configmap.yaml

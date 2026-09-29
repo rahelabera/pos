@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pos-frontend
+  labels:
+    app: pos-frontend
+    project: pos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pos-frontend
+  template:
+    metadata:
+      labels:
+        app: pos-frontend
+        project: pos
+    spec:
+      imagePullSecrets:
+        - name: regcred 
+      containers:
+      - name: pos-frontend
+        image: harbor.cbe.com.et/pos/frontend:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: pos-frontend-configmap

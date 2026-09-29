@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: pos-frontend
+spec:
+  to:
+    kind: Service
+    name: pos-frontend
+  port:
+    targetPort: 80
+  tls:
+    termination: edge

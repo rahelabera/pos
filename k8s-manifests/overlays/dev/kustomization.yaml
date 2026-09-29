@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - ../../base
+
+namespace: pos-dev
+
+images:
+  - name: harbor.cbe.com.et/pos/frontend
+    newTag: dev
+  - name: harbor.cbe.com.et/pos/backend
+    newTag: dev
+
+patches:
+  - path: frontend/replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: pos-frontend
+  - path: backend/replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: pos-backend
